@@ -1,4 +1,4 @@
-box: node:8
+box: node:current-slim
 
 build:
   steps:
@@ -27,7 +27,7 @@ build:
 
 
 deploy-to-kubernetes:
-
+  box: node:current-slim
   steps:
 
     # https://github.com/wercker/step-bash-template
