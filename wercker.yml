@@ -8,12 +8,14 @@ build:
 #
     - internal/docker-push:
       # specify the image to be pushed - this is the one we created earlier
+      cmd: 0.0.0.0 8080
+      working-dir: $WERCKER_ROOT
       tag: $WERCKER_GIT_COMMIT
-      image-name: getting-started-nodejs
-      username: $REGISTRY_USERNAME # Registry username
-      password: $REGISTRY_PASSWORD # Registry password
-      #registry: https://hub.docker.com
-      repository: $REGISTRY_NAME/getting-started-nodejs
+      ports: "8080"      
+      username: $DOCKER_USERNAME
+      password: $DOCKER_PASSWORD
+      repository: $DOCKER_REPO
+      registry: https://iad.ocir.io/v2
 
 
 deploy-to-kubernetes:
