@@ -2,20 +2,28 @@ box: node:8
 
 build:
   steps:
-    - internal/docker-build:
-      dockerfile: Dockerfile
-      image-name: getting-started-nodejs
+     - npm-install
+     - npm-test
+     - script:
+        name: echo nodejs information
+        code: |
+          echo "node version $(node -v) running"
+          echo "npm version $(npm -v) running"
+          
+#    - internal/docker-build:
+#      dockerfile: Dockerfile
+#      image-name: getting-started-nodejs
 #
     - internal/docker-push:
-      # specify the image to be pushed - this is the one we created earlier
-      cmd: 0.0.0.0 8080
+      entrypoint: node app.js
+#      cmd: 0.0.0.0 8080
       working-dir: $WERCKER_ROOT
       tag: $WERCKER_GIT_COMMIT
       ports: "8080"
       username: $DOCKER_USERNAME
       password: $DOCKER_PASSWORD
       repository: $DOCKER_REPO
-      registry: https://iad.ocir.io/v2
+#      registry: https://iad.ocir.io/v2
 
 
 deploy-to-kubernetes:
