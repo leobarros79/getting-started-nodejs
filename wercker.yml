@@ -2,9 +2,9 @@ box: node:8
 
 build:
   steps:
-     - npm-install
-     - npm-test
-     - script:
+    - npm-install
+    - npm-test
+    - script:
         name: echo nodejs information
         code: |
           echo "node version $(node -v) running"
