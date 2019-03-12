@@ -15,15 +15,15 @@ build:
 #      image-name: getting-started-nodejs
 #
     - internal/docker-push:
-      entrypoint: node app.js
+      cmd: node app.js
 #      cmd: 0.0.0.0 8080
       working-dir: $WERCKER_ROOT
       tag: $WERCKER_GIT_COMMIT
-#      ports: "8080"
+      ports: "8080"
       username: $DOCKER_USERNAME
       password: $DOCKER_PASSWORD
       repository: $DOCKER_REPO
-#      registry: https://iad.ocir.io/v2
+      registry: https://iad.ocir.io/v2
 
 
 deploy-to-kubernetes:
